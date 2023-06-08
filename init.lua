@@ -28,6 +28,13 @@ return {
 
   lsp = {
     -- customize lsp formatting options
+    config = {
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8"
+        }
+      }
+    },
     formatting = {
       -- control auto formatting on save
       format_on_save = {
@@ -93,6 +100,33 @@ return {
     -- ===============================colorscheme=======================================
     -- auto night mode
     local is_night = io.open("C:\\Users\\DELL\\is_night", "r"):read("*number")
-    if is_night == 1 then vim.cmd("colorscheme gruvbox") end
+    if is_night == 1
+    then
+      vim.cmd("colorscheme gruvbox")
+    else
+      vim.cmd("colorscheme astrolight")
+    end
+
+    -- ===============================copilot settings==================================
+    -- vim.cmd([[
+    --   imap <silent><script><expr> <C-P> copilot#Accept("\<CR>")
+    --   imap
+    -- ]])
+    -- ===============================neovide settings==================================
+    if vim.g.neovide then
+      -- change the scale
+      vim.g.neovide_scale_factor = 1.0
+      local change_scale_factor = function(delta)
+        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+      end
+      vim.keymap.set("n", "<leader>=", function()
+        change_scale_factor(1.25)
+      end)
+      vim.keymap.set("n", "<leader>-", function()
+        change_scale_factor(1 / 1.25)
+      end)
+      -- enable copy/paste in insert mode
+      vim.keymap.set('i', '<C-v>', '<C-r>+')
+    end
   end
 }
