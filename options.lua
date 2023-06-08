@@ -24,6 +24,17 @@ return {
     diagnostics_mode = 3,            -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off, 3=all on)
     icons_enabled = true,            -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+    -- neovide configurations
+    --
+    neovide_refresh_rate = 165,
+    neovide_hide_mouse_when_typing = true,
+    neovide_cursor_vfx_mode = "ripple",
+    neovide_scale_factor = 1.1,
+    neovide_floating_blur_amount_x = 2.0,
+    neovide_floating_blur_amount_y = 2.0,
+    -- copilot options
+    --
+    -- copilot_proxy = "http://127.0.0.1:10809",
   },
 }
 -- If you need more control, you can use the function()...end notation

@@ -47,5 +47,9 @@ return {
       }
     },
     -- your lsp config or other stuff
+  },
+  {
+    'rayes0/blossom.vim',
+    event = 'User AstroFile'
   }
 }

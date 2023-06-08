@@ -79,9 +79,12 @@ return {
 
     -- functionality
     ["<F5>"] = { ":Telescope undo<CR>", desc = "undo tree" },
-    ["<F6>"] = { ":Navbuddy<CR>", desc = "navigate through code" },
+    ["<leader>s"] = { ":Navbuddy<CR>", desc = "navigate through code" },
     ["<leader>r"] = { ":e!<CR>", desc = "refresh without saving" },
-
+    ["<leader>gg"] = {
+      function() require("astronvim.utils").toggle_term_cmd "gitui" end,
+      desc = "ToggleTerm gitui",
+    },
     -- some bindings for change
     ["<Cr>"] = { "ciw", desc = "change the whole word" }
   },
@@ -90,14 +93,20 @@ return {
     ["J"] = { "^", desc = "Jump to the beginning", noremap = true },
     ["K"] = { "g_", desc = "Jump to the end", noremap = true },
     ["-"] = {
-      function()
-        require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
-      end,
-      desc = "toggle comment"
-    },
+      "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+      desc = "Toggle comment for selection",
+    }
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
   },
+  i = {
+    -- ["<C-p>"] = {
+    --   function()
+    --     require("copilot.panel").accept()
+    --   end,
+    --   desc = "accept copilot suggestion"
+    -- }
+  }
 }
